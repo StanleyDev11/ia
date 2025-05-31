@@ -1,32 +1,30 @@
 const express = require("express");
 const cors = require("cors");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai");
 require("dotenv").config();
 
 const app = express();
 
 app.use(cors({
-  origin: "https://assistant-ia.netlify.app", // Mets ici ton domaine exact
+  origin: "https://assistant-ia.netlify.app",
 }));
 
 app.use(express.json());
 
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const openai = new OpenAIApi(configuration);
 
 app.post("/generate", async (req, res) => {
   try {
     const { prompt } = req.body;
 
-    const response = await openai.createChatCompletion({
+    const response = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [{ role: "user", content: prompt }],
     });
 
-    res.json({ result: response.data.choices[0].message.content });
+    res.json({ result: response.choices[0].message.content });
   } catch (error) {
     console.error("Erreur OpenAI :", error.message);
     res.status(500).send("Erreur serveur");
