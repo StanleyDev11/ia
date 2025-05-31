@@ -1,45 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assistant IA - Générateur de Pitch</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: white;
       padding: 2rem;
-      background-color: #f4f4f4;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 90%;
     }
+
     h1 {
-      color: #333;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #007BFF;
     }
-    textarea, input {
+
+    textarea {
       width: 100%;
       padding: 1rem;
-      margin-top: 1rem;
       font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      resize: vertical;
     }
+
     button {
       margin-top: 1rem;
+      width: 100%;
       padding: 1rem;
       background-color: #007BFF;
       color: white;
       border: none;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     #resultat {
       margin-top: 2rem;
       padding: 1rem;
-      background-color: white;
+      background-color: #f9f9f9;
       border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      min-height: 100px;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
-  <h1>Générateur de Pitch de Projet</h1>
-  <textarea id="prompt" placeholder="Décris ton idée (ex: application de tutorat pour étudiants)"></textarea>
-  <button onclick="envoyerPrompt()">Générer le Pitch</button>
-  <div id="resultat"></div>
+  <div class="container">
+    <h1>Générateur de Pitch IA</h1>
+    <textarea id="prompt" rows="6" placeholder="Décris ton idée (ex: application de tutorat pour étudiants)"></textarea>
+    <button onclick="envoyerPrompt()">Générer le Pitch</button>
+    <div id="resultat"></div>
+  </div>
 
   <script>
     async function envoyerPrompt() {
@@ -69,3 +108,4 @@
   </script>
 </body>
 </html>
+
