@@ -5,9 +5,8 @@ require("dotenv").config();
 
 const app = express();
 
-// Autoriser uniquement ton frontend hébergé sur Netlify
 app.use(cors({
-  origin: "https://assistant-ia.netlify.app"
+  origin: "https://assistant-ia.netlify.app" // Remplace par ton vrai domaine Netlify si besoin
 }));
 
 app.use(express.json());
@@ -15,6 +14,7 @@ app.use(express.json());
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
 const openai = new OpenAIApi(configuration);
 
 app.post("/generate", async (req, res) => {
